@@ -11,7 +11,7 @@ var newplaytime;
 var gingerHeight = $(".decoration-ginger").height();
 
 var gingerminTop = parseInt($(".position-ginger").css("top")) - gingerHeight / 5;
-var gingermaxTop = parseInt($(".position-ginger").css("top")) + gingerHeight * 6 / 5;
+var gingermaxTop = parseInt($(".position-ginger").css("top")) + gingerHeight / 5;
 var gingerminTopPercent = gingerminTop / bgHeight * 100;
 var gingermaxTopPercent = gingermaxTop / bgHeight * 100;
 
@@ -22,7 +22,7 @@ var gingerBottomPercent = gingerBottom / bgHeight * 100;
 var starHeight = $(".decoration-star").height();
 
 var starminTop = parseInt($(".position-star").css("top")) - starHeight / 5;
-var starmaxTop = parseInt($(".position-star").css("top")) + starHeight * 6 / 5;
+var starmaxTop = parseInt($(".position-star").css("top")) + starHeight / 5;
 var starminTopPercent = starminTop / bgHeight * 100;
 var starmaxTopPercent = starmaxTop / bgHeight * 100;
 
@@ -33,7 +33,7 @@ var starBottomPercent = starBottom / bgHeight * 100;
 var socksHeight = $(".decoration-socks").height();
 
 var socksminTop = parseInt($(".position-socks").css("top")) - socksHeight / 5;
-var socksmaxTop = parseInt($(".position-socks").css("top")) + socksHeight * 6 / 5;
+var socksmaxTop = parseInt($(".position-socks").css("top")) + socksHeight / 5;
 var socksminTopPercent = socksminTop / bgHeight * 100;
 var socksmaxTopPercent = socksmaxTop / bgHeight * 100;
 
@@ -50,7 +50,7 @@ function gingerDrop() {
     var stopFunc = "ginger";
     var btnPut = $(".btn-put-ginger");
 
-    console.log("薑餅人掉落");
+    // console.log("薑餅人掉落");
 
     drop(decoTopPercentGinger, moveDistanceGinger, decoractionGinger, gingerminTopPercent, gingermaxTopPercent, stopFunc, btnPut);
 
@@ -69,7 +69,7 @@ function starDrop() {
     var stopFunc = "star";
     var btnPut = $(".btn-put-star");
 
-    console.log("星星掉落");
+    // console.log("星星掉落");
 
     drop(decoTopPercentStar, moveDistanceStar, decoractionStar, starminTopPercent, starmaxTopPercent, stopFunc, btnPut);
 
@@ -88,7 +88,7 @@ function socksDrop() {
     var stopFunc = "socks";
     var btnPut = $(".btn-put-socks");
 
-    console.log("襪子掉落");
+    // console.log("襪子掉落");
 
     drop(decoTopPercentSocks, moveDistanceSocks, decoractionSocks, socksminTopPercent, socksmaxTopPercent, stopFunc, btnPut);
 
@@ -117,23 +117,23 @@ function drop(decoTopPercentD, moveDistanceD, decoractionD, minTopD, maxTopD, st
         console.log("decoTopPercentD=" + decoTopPercentD);
         if(decoTopPercentD > minTopD && decoTopPercentD < maxTopD) {
             if(stopFucD == "ginger") {
-                console.log("薑餅人成功");
+                // console.log("薑餅人成功");
                 gingerStop();
             }else if(stopFucD == "star") {
-                console.log("星星成功");
+                // console.log("星星成功");
                 starStop();
             }else if(stopFucD == "socks") {
-                console.log("襪子成功");
+                // console.log("襪子成功");
                 socksStop();
             }
         }else {
-            if(stopFucD == "ginger") {
-                console.log("薑餅人失敗");
-            }else if(stopFucD == "star") {
-                console.log("星星失敗");
-            }else if(stopFucD == "socks") {
-                console.log("襪子失敗");
-            }
+            // if(stopFucD == "ginger") {
+                // console.log("薑餅人失敗");
+            // }else if(stopFucD == "star") {
+                // console.log("星星失敗");
+            // }else if(stopFucD == "socks") {
+                // console.log("襪子失敗");
+            // }
             fail();
         }
     })
