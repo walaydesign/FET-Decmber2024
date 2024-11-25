@@ -138,4 +138,33 @@ body {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
+
+.introduction {
+  position: absolute;
+  max-width: 640px;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 0;
+}
+
+.introduction_btn {
+  position: absolute;
+  width: 30%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 81%;
+}
+
+.introduction_text {
+  position: absolute;
+  width: 80%;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
 /*# sourceMappingURL=style.css.map */

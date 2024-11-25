@@ -40,8 +40,11 @@ var socksmaxTopPercent = socksmaxTop / bgHeight * 100;
 var socksBottom = bgHeight - socksHeight;
 var socksBottomPercent = socksBottom / bgHeight * 100;
 
+$(".introduction_btn").click(function() {
+    $(".introduction").hide();
+    gingerDrop();
+})
 
-gingerDrop();
 // 薑餅人掉落
 function gingerDrop() {
     var moveDistanceGinger = 0.06;
@@ -63,7 +66,7 @@ function gingerStop() {
 }
 
 function starDrop() {
-    var moveDistanceStar = 0.02;
+    var moveDistanceStar = 0.04;
     var decoractionStar = $(".decoration-star");
     var decoTopPercentStar = decoTopPercentOrigin;
     var stopFunc = "star";
@@ -82,7 +85,7 @@ function starStop() {
 }
 
 function socksDrop() {
-    var moveDistanceSocks = 0.1;
+    var moveDistanceSocks = 0.08;
     var decoractionSocks = $(".decoration-socks");
     var decoTopPercentSocks = decoTopPercentOrigin;
     var stopFunc = "socks";
@@ -95,7 +98,9 @@ function socksDrop() {
 }
 
 function socksStop() {
-    $(".success").show();
+    setTimeout(function () {
+        $(".success").show();
+    }, 300)
 }
 
 
@@ -127,41 +132,86 @@ function drop(decoTopPercentD, moveDistanceD, decoractionD, minTopD, maxTopD, st
                 socksStop();
             }
         }else {
-            // if(stopFucD == "ginger") {
+            if(stopFucD == "ginger") {
                 // console.log("薑餅人失敗");
-            // }else if(stopFucD == "star") {
+                gingerFail();
+            }else if(stopFucD == "star") {
                 // console.log("星星失敗");
-            // }else if(stopFucD == "socks") {
+                starFail();
+            }else if(stopFucD == "socks") {
                 // console.log("襪子失敗");
-            // }
-            fail();
+                socksFail();
+            }
+            // fail();
         }
     })
 }
 
 // 失敗
-function fail() {
-    $(".fail").show();
+function gingerFail() {
     $(".decoration-ginger").css("top",decoTopPercentOrigin + "%");
-    $(".decoration-star").css("top",decoTopPercentOrigin + "%");
-    $(".decoration-socks").css("top",decoTopPercentOrigin + "%");
 
-    $(".btn-put-" + playtime).remove();
-
+    $(".btn-put-ginger.btn-put-" + playtime).remove();
     playtime = playtime + 1;
     var newGingerBtn = $("<img src='./img/put.gif'>").addClass("btn-put btn-put-ginger btn-put-" + playtime);
     $(".container").append(newGingerBtn);
-    var newStarBtn = $("<img src='./img/put.gif'>").addClass("btn-put btn-put-star btn-put-" + playtime);
-    $(".container").append(newStarBtn);
-    var newSocksBtn = $("<img src='./img/put.gif'>").addClass("btn-put btn-put-socks btn-put-" + playtime);
-    $(".container").append(newSocksBtn);
 
     $(".btn-put-ginger").show();
     $(".btn-put-star").hide();
     $(".btn-put-socks").hide();
 
+    var redo = "ginger";
+    failCommon(redo);
+   
+}
+
+function starFail() {
+    $(".decoration-star").css("top",decoTopPercentOrigin + "%");
+
+    $(".btn-put-star.btn-put-" + playtime).remove();
+    playtime = playtime + 1;
+    var newStarBtn = $("<img src='./img/put.gif'>").addClass("btn-put btn-put-star btn-put-" + playtime);
+    $(".container").append(newStarBtn);
+
+    $(".btn-put-ginger").hide();
+    $(".btn-put-star").show();
+    $(".btn-put-socks").hide();
+
+    var redo = "star";
+    failCommon(redo);
+
+}
+
+function socksFail() {
+    $(".decoration-socks").css("top",decoTopPercentOrigin + "%");
+
+    $(".btn-put-socks.btn-put-" + playtime).remove();
+    playtime = playtime + 1;
+    var newSocksBtn = $("<img src='./img/put.gif'>").addClass("btn-put btn-put-socks btn-put-" + playtime);
+    $(".container").append(newSocksBtn);
+
+    $(".btn-put-ginger").hide();
+    $(".btn-put-star").hide();
+    $(".btn-put-socks").show();
+
+    var redo = "socks";
+    failCommon(redo);
+
+}
+
+function failCommon(startFunc) {
+    $(".fail").show();
     setTimeout(function () {
         $(".fail").hide();
-        gingerDrop();
+        if(startFunc == "ginger") {
+            // console.log("薑餅人重來");
+            gingerDrop();
+        }else if(startFunc == "star") {
+            // console.log("星星重來");
+            starDrop();
+        }else if(startFunc == "socks") {
+            // console.log("襪子重來");
+            socksDrop();
+        }
     },3000);
 }
